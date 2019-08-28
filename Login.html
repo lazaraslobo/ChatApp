@@ -1,0 +1,18 @@
+<div layout="row" layout-align="center center" ng-cloak layout-fill>
+    <md-card layout="column" flex="40" layout-align="start center">
+        <!-- <div layout="row" flex="60" layout-align="center start"> -->
+        <md-input-container>
+            <label>User Name</label>
+            <!-- {{currentUserData}} -->
+            <input flexFill type="text" ng-model="mainCtrl.userName" required>
+        </md-input-container>
+        <!-- </div> -->
+        <!-- <div layout="row" flex="60" layout-align="center start"> -->
+        <span ng-if="mainCtrl.userName && existUserNames.indexOf(mainCtrl.userName) != -1">This user name already
+            exists you can login.</span>
+        <span ng-if="mainCtrl.userName && existUserNames.indexOf(mainCtrl.userName) == -1">This user name not exists we
+            will create one for you</span>
+        <md-button ng-if="mainCtrl.userName" class="md-raised md-primary" ng-click="existUserNames.indexOf(mainCtrl.userName) != -1?mainCtrl.getLoginData(mainCtrl.userName):mainCtrl.startChat(mainCtrl.userName)">Start</md-button>
+        <!-- </div> -->
+    </md-card>
+</div>

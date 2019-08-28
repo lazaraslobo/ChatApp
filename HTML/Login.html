@@ -1,0 +1,16 @@
+<body ng-app="user_Controller" ng-controller="MainController as mainCtrl" ng-cloak>
+    <div layout="row" layout-align="center center" layout-fill>
+        <md-card layout="column" flex="40" layout-align="start center">
+            <!-- <div layout="row" flex="60" layout-align="center start"> -->
+            <md-input-container>
+                <label>User Name</label>
+                <input flexFill type="text" ng-model="userName" required>
+            </md-input-container>
+            <!-- </div> -->
+            <!-- <div layout="row" flex="60" layout-align="center start"> -->
+            <span ng-if="existUserNames.indexOf(userName) != -1">This user name is already taken</span>
+            <md-button ng-if="userName && existUserNames.indexOf(userName) == -1" class="md-raised md-primary" ng-click="mainCtrl.startChat(userName)">Start</md-button>
+            <!-- </div> -->
+        </md-card>
+    </div>
+</body>

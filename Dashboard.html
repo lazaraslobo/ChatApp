@@ -1,0 +1,76 @@
+<div ng-cloak>
+    <div layout="row" layout-align="center start">
+        <md-card layout="row" flex="60" layout-padding layout-align="center start" style="    background-color: #b3ffb3;">
+            <span flex="90">{{currentUserData.user_id}}&nbsp;&nbsp;{{currentUserData.user_name}}</span>
+            <md-icon style=" color: #21ea21;">
+                check_circle
+            </md-icon>
+            <md-button ng-click="mainCtrl.userLogout();">Logout</md-button>
+        </md-card>
+    </div>
+    <div layout="row" layout-align="center start">
+        <md-card layout="row" flex="60" layout-padding layout-align="start center" style="margin: 0px;">
+            <span flex="40">Active Users</span>
+            <!-- {{mainCtrl.msgSentTo[mainCtrl.selectedUser['user_id']]}} -->
+            <!-- {{messages[currentUserData.user_id][mainCtrl.selectedUser['user_id']]}}
+            {{mainCtrl.selectedUser['user_id']}} -->
+        </md-card>
+    </div>
+    <div layout="row" layout-align="center start" layout-fill>
+        <div layout="row" layout-align="center start" flex="60" style="height: 530px;">
+            <md-card layout="row" layout-fill>
+                <div flex="30" style="margin: 0px;overflow-x: auto;max-height: 530px;">
+                    <md-card layout="column">
+                        <md-card style="margin: 0px;" layout-align="center stretch">
+                            <md-card-title class="activeUsers_css" ng-repeat="eachUser in activeUsers" ng-if="eachUser['user_id']!=currentUserData['user_id']"
+                                ng-click="mainCtrl.selectedUser = eachUser">
+                                <md-card-title-text>
+                                    {{eachUser["user_id"]}}.&nbsp;&nbsp;{{eachUser["user_name"]}}
+                                </md-card-title-text>
+                                <md-icon style=" color: #21ea21;">
+                                    check_circle
+                                </md-icon>
+                            </md-card-title>
+                            <md-card-title ng-if="activeUsers.length <= 1">
+                                <md-card-title-text>
+                                    No Active Users
+                                </md-card-title-text>
+                            </md-card-title>
+                        </md-card>
+                    </md-card>
+                </div>
+                <div flex="70" layout="column" layout-fill>
+                    <center ng-if="!mainCtrl.selectedUser">
+                        <h3>Select contact to chat</h3>
+                    </center>
+                    <md-card flex="100" style="margin: 0px;" layout="column" layout-fill ng-if="mainCtrl.selectedUser">
+                        <div style="min-height: 100px;overflow-x: visible;overflow: auto;" layout="column" id="messageBox">
+                            <div layout="row" layout-align="center start" style="background-color: #b3b3ff;font-size: 1.5em;">
+                                <span>{{mainCtrl.selectedUser['user_name']}}</span>
+                            </div>
+                            <!-- Final -->
+                            <span class="message_text" ng-if="mainCtrl.messageDetails['from'] == mainCtrl.selectedUser['user_id'] || mainCtrl.messageDetails['sendTo'] == mainCtrl.selectedUser['user_id']">
+                                {{mainCtrl.messageDetails['msgBody']}}
+                            </span>
+                            <!-- final -->
+                            <!-- <span id="message_text" class="message_text" ng-if="mainCtrl.messageDetails['from'] == mainCtrl.selectedUser['user_id'] || mainCtrl.messageDetails['sendTo'] == mainCtrl.selectedUser['user_id']">
+                                {{mainCtrl.messageDetails['msgBody']}}
+                            </span> -->
+                        </div>
+                        <md-divider></md-divider>
+                        <div layout="row">
+                            <md-input-container class="md-block" flex="90">
+                                <textarea ng-model="userMessage" style="max-height: 50px;" aria-label="Enter the Message"
+                                    md-select-on-focus placeholder="New message"></textarea>
+                            </md-input-container>
+                            <md-button class="md-icon-button md-primary" aria-label="Send" layout-align="center center"
+                                ng-click="mainCtrl.userMessage(mainCtrl.selectedUser['user_id'], userMessage); userMessage = ''">
+                                <md-icon>send</md-icon>
+                            </md-button>
+                        </div>
+                    </md-card>
+                </div>
+            </md-card>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,93 @@
+<html lang="en">
+<!-- head begin -->
+
+<head>
+    <!-- <script src="./JS/Module_Settings.js"></script> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.10/angular-material.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <link rel="stylesheet" href="../CSS/main_css.css">
+</head>
+
+<body ng-app="user_Controller" ng-controller="MainController as mainCtrl" ng-cloak>
+    <div layout="row" layout-align="center start">
+        <md-card layout="row" flex="60" layout-padding layout-align="center start" style="    background-color: #b3ffb3;">
+            <span flex="90">{{currentUserData.user_name}}</span>
+            <md-icon>
+                check_circle
+            </md-icon>
+        </md-card>
+    </div>
+    <div layout="row" layout-align="center start">
+        <md-card layout="row" flex="60" layout-padding layout-align="start center" style="margin: 0px;">
+            <span flex="40">Active Users</span>
+            <!-- {{mainCtrl.msgSentTo}} -->
+        </md-card>
+    </div>
+    <div layout="row" layout-align="center start" layout-fill>
+        <div layout="row" layout-align="center start" flex="60" style="height: 530px;">
+            <md-card layout="row" layout-fill>
+                <div flex="30">
+                    <md-card style="margin: 0px;" layout="column">
+                        <md-card style="    margin: 0px;">
+                            <md-card-title class="activeUsers_css" style="padding: 10px;" ng-repeat="eachUser in activeUsers"
+                                ng-if="eachUser['user_id']!=currentUserData['user_id']" ng-click="mainCtrl.selectedUser = eachUser">
+                                <md-card-title-text>
+                                    {{eachUser["user_name"]}}
+                                </md-card-title-text>
+                                <md-icon style=" color: #21ea21;">
+                                    check_circle
+                                </md-icon>
+                            </md-card-title>
+                        </md-card>
+                    </md-card>
+                </div>
+                <div flex="70" layout="column" layout-fill>
+                    <center ng-if="!mainCtrl.selectedUser"><h3>Select contact to chat</h3></center>
+                    <md-card flex="100" style="margin: 0px;" layout="column" layout-fill ng-if="mainCtrl.selectedUser">
+                        <div style="min-height: 100px;overflow-x: visible;overflow: auto;" layout="column">
+                            <span class="message_text" ng-repeat="eachUserMsg in mainCtrl.msgSentTo[mainCtrl.selectedUser['user_id']]">{{eachUserMsg['message']}}</span>
+                            <center ng-if="!mainCtrl.msgSentTo[mainCtrl.selectedUser['user_id']]">
+                                <h3>There are no messages</h3>
+                            </center>
+                        </div>
+                        <md-divider></md-divider>
+                        <div layout="row">
+                            <md-input-container class="md-block" flex="90">
+                                <textarea ng-model="userMessage" style="max-height: 50px;" aria-label="Enter the Message"
+                                    md-select-on-focus></textarea>
+                            </md-input-container>
+                            <md-button class="md-icon-button md-primary" aria-label="Send" layout-align="center center"
+                                ng-click="mainCtrl.userMessage(mainCtrl.selectedUser['user_id'], userMessage); userMessage = ''">
+                                <md-icon>send</md-icon>
+                            </md-button>
+                        </div>
+                    </md-card>
+                </div>
+            </md-card>
+        </div>
+    </div>
+
+    <div ng-view></div>
+</body>
+<!-- body end -->
+
+<!-- Angular Material requires Angular.js Libraries -->
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.2/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.2/angular-animate.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.2/angular-aria.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.2/angular-messages.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
+
+<script src="https://unpkg.com/angular-toastr/dist/angular-toastr.tpls.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/angular-toastr/dist/angular-toastr.css" />
+
+<script src="../JS/user_Controller.js"></script>
+
+<!-- Angular Material Library -->
+<script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.10/angular-material.min.js"></script>
+
+
+</html>

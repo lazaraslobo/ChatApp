@@ -1,0 +1,23 @@
+{
+    "dependencies": {
+        "angular-cookies": "^1.7.5",
+        "body-parser": "^1.18.3",
+        "cors": "^2.8.5",
+        "express": "^4.16.4",
+        "mysql": "^2.16.0",
+        "nodemon": "^1.18.6",
+        "socket.io": "^2.1.1",
+        "websocket": "^1.0.28"
+    },
+    "name": "chatapp",
+    "version": "0.0.1",
+    "description": "My Project",
+    "scripts": {
+        "start": "nodemon server.js"
+    },
+    "main": "server.js",
+    "repository": {
+        "type": "git",
+        "url": ""
+    }
+}

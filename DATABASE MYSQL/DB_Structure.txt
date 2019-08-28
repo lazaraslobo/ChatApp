@@ -1,0 +1,109 @@
+-- phpMyAdmin SQL Dump
+-- version 3.2.0.1
+-- http://www.phpmyadmin.net
+--
+-- Host: localhost
+-- Generation Time: Nov 19, 2018 at 06:59 AM
+-- Server version: 5.1.36
+-- PHP Version: 5.3.0
+
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+
+--
+-- Database: `chatapp_db`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_user`
+--
+
+CREATE TABLE IF NOT EXISTS `tbl_user` (
+  `user_id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'primary key AI',
+  `user_name` varchar(50) NOT NULL COMMENT 'user name varchar',
+  `isActive` tinyint(4) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`user_id`),
+  UNIQUE KEY `user_name` (`user_name`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=31 ;
+
+--
+-- Dumping data for table `tbl_user`
+--
+
+INSERT INTO `tbl_user` (`user_id`, `user_name`, `isActive`) VALUES
+(1, 'lazaras', 1),
+(11, 'vishal', 0),
+(10, 'abhishaikh', 0),
+(9, 'taher', 0),
+(8, 'mithun', 0),
+(7, 'laxman', 0),
+(12, 'w', 0),
+(13, 'd', 0),
+(14, 'lobo', 1),
+(15, 'lob', 0),
+(16, 'lo', 0),
+(17, 'ji', 0),
+(18, 'lon', 0),
+(19, 'lonp', 0),
+(20, 'jv', 0),
+(21, 'lop', 0),
+(22, 'loh', 0),
+(23, 'mi', 0),
+(24, 'temp', 0),
+(25, 'vc', 0),
+(26, 'dgsfgdfg', 0),
+(27, 'hi', 0),
+(28, 'michaesh', 0),
+(29, 'chetan', 0),
+(30, 'mit', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_user_message`
+--
+
+CREATE TABLE IF NOT EXISTS `tbl_user_message` (
+  `msg_id` int(11) NOT NULL AUTO_INCREMENT,
+  `sender_id` int(11) NOT NULL,
+  `receiver_id` int(11) NOT NULL,
+  `msg_body` text NOT NULL,
+  PRIMARY KEY (`msg_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=31 ;
+
+--
+-- Dumping data for table `tbl_user_message`
+--
+
+INSERT INTO `tbl_user_message` (`msg_id`, `sender_id`, `receiver_id`, `msg_body`) VALUES
+(1, 1, 8, 'This is test'),
+(2, 1, 8, 'fgdfgdfg'),
+(3, 1, 8, 'cvdf'),
+(4, 1, 8, 'gOT of thrones'),
+(5, 1, 8, 'c'),
+(6, 1, 8, 'd'),
+(7, 1, 8, 't'),
+(8, 1, 8, 'cvx'),
+(9, 1, 8, 'g'),
+(10, 1, 8, 'Harry potter'),
+(11, 1, 12, 'fg'),
+(12, 1, 12, 'fgdgdgfdf'),
+(13, 1, 12, 'dgdgfdf'),
+(14, 1, 12, 'v'),
+(15, 1, 12, 'fg'),
+(16, 1, 8, 'df'),
+(17, 1, 8, 'dg'),
+(18, 1, 8, 'dgf'),
+(19, 1, 13, 'bg'),
+(20, 1, 13, 'g'),
+(21, 1, 13, 'v'),
+(22, 16, 23, 'hi'),
+(23, 1, 8, 'hi'),
+(24, 1, 11, 'hi'),
+(25, 1, 11, 'hi'),
+(26, 1, 23, 'hi'),
+(27, 1, 11, 'Hi'),
+(28, 1, 11, 'This is mithun'),
+(29, 14, 11, 'This is lazaras lobo'),
+(30, 1, 14, 'Hi bro');
